@@ -15,35 +15,33 @@ spec:
         app: tic-tac-toe
     spec:
       containers:
-      - name: tic-tac-toe
-        image: ghcr.io/iam-aniket-dutta/react-app-dev-sec-ops-pipeline:sha-53efea9fec972f621a26a18c5f5864cb1121b8f4
-        # Image will be automatically updated by CI/CD pipeline
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
-        resources:
-          limits:
-            cpu: "0.5"
-            memory: "512Mi"
-          requests:
-            cpu: "0.2"
-            memory: "256Mi"
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        - name: tic-tac-toe
+          image: ghcr.io/iam-aniket-dutta/react-app-dev-sec-ops-pipeline:sha-53efea9fec972f621a26a18c5f5864cb1121b8f4
+          # Image will be automatically updated by CI/CD pipeline
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "512Mi"
+            requests:
+              cpu: "0.2"
+              memory: "256Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
       imagePullSecrets:
-      - name: github-container-registry
-
-
+        - name: github-container-registry
 # create github-container-registry secrets for pull docker image from GitHub Container Registry..
 # kubectl create secret docker-registry github-container-registry \
 #   --docker-server=ghcr.io \
